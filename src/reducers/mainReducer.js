@@ -7,7 +7,6 @@ const initialState = {
 }
 
 export default function todos (state = initialState, action) {
-  debugger//eslint-disable-line
   switch (action.type) {
     case FETCH_SERVICE:
       return {

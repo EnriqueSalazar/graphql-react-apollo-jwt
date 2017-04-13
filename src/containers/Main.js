@@ -3,12 +3,13 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import Form from '../components/Form'
 import List from '../components/List'
+import {gql, graphql} from 'react-apollo'
 
 class Main extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      data: null,
+      quizEntries: [],
       formValues: {}
     }
   }
@@ -20,18 +21,19 @@ class Main extends Component {
 
   // when props received from the store, updates state.
   componentWillReceiveProps (nextProps) {
-    const data = nextProps.main.data
-    this.setState({data})
+    const quizEntries = nextProps.data.quizEntries
+    if (quizEntries) {
+      this.setState({quizEntries})
+    }
   }
   handleSubmit=(formValues) => {
-    debugger//eslint-disable-line
     this.props.actions.add(formValues)
   }
   render () {
     return (
       <div >
         <Form handleSubmit={this.handleSubmit} />
-        <List data={this.props.main.data} />
+        <List quizEntries={this.state.quizEntries} />
       </div>
     )
   }
@@ -42,5 +44,10 @@ Main.propTypes = {
   main: PropTypes.object.isRequired
 
 }
-
-export default Main
+export default graphql(gql`
+  query{quizEntries{
+    id,
+    firstname,
+    lastname
+  }}
+`)(Main)

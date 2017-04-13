@@ -2,7 +2,7 @@
 // time of the assignation
 import React from 'react'
 import PropTypes from 'prop-types'
-// import {Row, Col} from 'react-bootstrap'
+import {gql, graphql} from 'react-apollo'
 import Col from 'react-bootstrap/lib/Col'
 import Row from 'react-bootstrap/lib/Row'
 
@@ -23,7 +23,18 @@ class Form extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    this.props.handleSubmit(this.state.formValues)
+    // this.props.handleSubmit(this.state.formValues)
+    const firstname = this.state.formValues.firstname
+    const lastname = this.state.formValues.lastname
+    this.props.submit(firstname, lastname)
+    // this.props.mutate({
+    //   variables: {firstname, lastname}
+    // })
+    //   .then(({data}) => {
+    //     console.log('got data', data)
+    //   }).catch((error) => {
+    //     console.log('there was an error sending the query', error)
+    //   })
   }
 
   render () {
@@ -43,12 +54,7 @@ class Form extends React.Component {
               value={this.state.lastname}
               onChange={this.handleChange} />
             <br />
-            <input
-              id="email"
-              type="text"
-              value={this.state.email}
-              onChange={this.handleChange} />
-            <button type="submit">hola</button>
+            <button type="submit">Submit</button>
           </form>
         </Col>
       </Row>
@@ -57,7 +63,22 @@ class Form extends React.Component {
 }
 
 Form.propTypes = {
-  handleSubmit: PropTypes.func.isRequired
+  handleSubmit: PropTypes.func.isRequired,
+  submit: PropTypes.func.isRequired
 }
 
-export default Form
+const createQuizEntryMutation = gql`
+  mutation createQuizEntry($firstname: String!, $lastname: String!){
+  createQuizEntry(firstname:$firstname, lastname:$lastname){
+    id
+    firstname
+    lastname
+  }
+}
+`
+
+export default graphql(createQuizEntryMutation, {
+  props: ({mutate}) => ({
+    submit: (firstname, lastname) => mutate({variables: {firstname, lastname}})
+  })
+})(Form)

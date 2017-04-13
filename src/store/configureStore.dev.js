@@ -12,7 +12,8 @@ const configureStore = (preloadedState) => {
     compose(
       applyMiddleware(thunk, createLogger()),
       DevTools.instrument()
-    )
+    ),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 
   if (module.hot) {

@@ -8,15 +8,15 @@ const List = props => (
   <Row>
     <Col md={5}>
       <ul>
-        {props.data.map(user =>
-          <li key={user._id}>{user.email}</li>)}
+        {props.quizEntries.map(user =>
+          <li key={user.id}>{user.firstname} {user.lastname}</li>)}
       </ul>
     </Col>
   </Row>
 )
 
 List.propTypes = {
-  data: PropTypes.array.isRequired
+  quizEntries: PropTypes.array.isRequired
 }
 
 export default List
