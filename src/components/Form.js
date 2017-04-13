@@ -6,7 +6,8 @@ import {graphql} from 'react-apollo'
 import Col from 'react-bootstrap/lib/Col'
 import Row from 'react-bootstrap/lib/Row'
 import QUIZ_ENTRY_QUERY from '../queries/QuizEntryQuery.graphql'
-import CREATE_QUIZ_ENTRY_QUERY from '../queries/CreateQuizEntryMutation.graphql'
+import CREATE_QUIZ_ENTRY_MUTATION from
+  '../queries/CreateQuizEntryMutation.graphql'
 
 class Form extends React.Component {
   constructor (props) {
@@ -76,6 +77,6 @@ Form.propTypes = {
   mutate: PropTypes.func.isRequired
 }
 
-const FormWithMutation = graphql(CREATE_QUIZ_ENTRY_QUERY)(Form)
+const FormWithMutation = graphql(CREATE_QUIZ_ENTRY_MUTATION)(Form)
 
 export default FormWithMutation
