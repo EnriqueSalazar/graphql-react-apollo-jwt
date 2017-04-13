@@ -1,0 +1,77 @@
+{
+  "plugins": [
+    "esformatter-jsx"
+  ],
+  // this is the section this plugin will use to store the settings for the jsx formatting
+  "jsx": {
+    "formatJSX": true, //Duh! that's the default
+    "attrsOnSameLineAsTag": false, // move each attribute to its own line
+    "maxAttrsOnTag": 1, // if lower or equal than 3 attributes, they will be kept on a single line
+    "firstAttributeOnSameLine": false, // keep the first attribute in the same line as the tag
+    "formatJSXExpressions": true, // default true, if false jsxExpressions won't be recursively formatted
+    "JSXExpressionsSingleLine": true, // default true, if false the JSXExpressions might span several lines
+    "alignWithFirstAttribute": false, // do not align attributes with the first tag
+    "spaceInJSXExpressionContainers": " ", // default to one space. Make it empty if you don't like spaces between JSXExpressionContainers
+    "removeSpaceBeforeClosingJSX": false, // default false. if true <React.Something /> => <React.Something/>
+    "closingTagOnNewLine": true, // default false. if true attributes on multiple lines will close the tag on a new line
+    "JSXAttributeQuotes": "", // possible values "single" or "double". Leave it as empty string if you don't want to modify the attributes' quotes
+    "htmlOptions": { // same as the ones passed to js-beautifier.html
+      // "brace_style": "expand",
+      // "indent_char": " ",
+      "indent_size": 2,
+      "indent_level": 0,
+      // "max_preserve_newlines": 2,
+      // "preserve_newlines": true,
+      // "indent-inner-html": true,
+      // "end_with_newline": true
+      //wrap_line_length: 250
+      "brace_style": "collapse",
+      "end_with_newline": false,
+      "indent_char": " ",
+      "indent_handlebars": true,
+      "indent_inner_html": false,
+      "indent_scripts": "normal",
+      "max_preserve_newlines": 0,
+      "preserve_newlines": true,
+      // "unformatted": [
+      //   "Col"
+      //   //   "a",
+      //   //   "span",
+      //   //   "img",
+      //   //   "code",
+      //   //   "pre",
+      //   //   "sub",
+      //   //   "sup",
+      //   //   "em",
+      //   //   "strong",
+      //   //   "b",
+      //   //   "i",
+      //   //   "u",
+      //   //   "strike",
+      //   //   "big",
+      //   //   "small",
+      //   //   "pre",
+      //   //   "h1",
+      //   //   "h2",
+      //   //   "h3",
+      //   //   "h4",
+      //   //   "h5",
+      //   //   "h6"
+      // ],
+      "e4x": true,
+      "wrap_line_length": 120
+    }
+  },
+  "whiteSpace": {
+    "before": {
+      "ObjectPatternClosingBrace": 1,
+      "FunctionExpressionOpeningBrace": 1,
+      "FunctionExpressionClosingBrace": 1
+    },
+    "after": {
+      "ObjectPatternOpeningBrace": 1,
+      "FunctionExpressionOpeningBrace": 1,
+      "FunctionExpressionClosingBrace": -1
+    }
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "parser": "babel-eslint",
+    "extends": [
+        "standard",
+        "plugin:react/recommended"
+    ],
+    "env": {
+        "browser": true,
+        "jasmine": true
+    },
+    "plugins": [
+        "react"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 2015,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true,
+            "jsx": true
+        }
+    },
+    "globals": {
+        "test": true,
+        "jest": true
+    },
+    "rules": {
+      "max-len": ["warn", { "code": 80 }],
+
+        "generator-star-spacing": [
+            "error",
+            "after"
+        ],
+        "object-curly-spacing": [
+            "error",
+            "never"
+        ],
+        "array-bracket-spacing": [
+            "error",
+            "never"
+        ],
+        "handle-callback-err": "off",
+        "prefer-const": [
+            "error"
+        ],
+        "react/prop-types": "off",
+        "react/jsx-boolean-value": [
+            "error",
+            "never"
+        ],
+        "react/jsx-closing-bracket-location": [
+            "error",
+            "after-props"
+        ],
+        "react/jsx-curly-spacing": [
+            "error",
+            "never"
+        ],
+        "react/jsx-equals-spacing": [
+            "error",
+            "never"
+        ],
+        "react/jsx-first-prop-new-line": [
+            "error",
+            "multiline-multiprop"
+        ],
+        "react/jsx-indent": [
+            "error",
+            2
+        ],
+        "react/jsx-indent-props": [
+            "error",
+            2
+        ],
+        "react/jsx-key": [
+            "error"
+        ],
+        "react/jsx-no-bind": [
+            "error",
+            {
+                "ignoreRefs": false,
+                "allowArrowFunctions": true,
+                "allowBind": false
+            }
+        ],
+        "react/jsx-no-comment-textnodes": [
+            "error"
+        ],
+        "react/jsx-no-duplicate-props": [
+            "error",
+            {
+                "ignoreCase": false
+            }
+        ],
+        "react/jsx-no-target-blank": [
+            "error"
+        ],
+        "react/jsx-no-undef": [
+            "error"
+        ],
+        "react/jsx-pascal-case": [
+            "error"
+        ],
+        "react/jsx-space-before-closing": [
+            "error",
+            "always"
+        ],
+        "react/jsx-tag-spacing": [
+            "error",
+            {
+                "closingSlash": "never",
+                "beforeSelfClosing": "always",
+                "afterOpening": "never"
+            }
+        ],
+        "react/jsx-uses-react": [
+            "error"
+        ],
+        "react/jsx-uses-vars": [
+            "error"
+        ],
+        "react/jsx-wrap-multilines": [
+            "error",
+            {
+                "declaration": true,
+                "assignment": true,
+                "return": true
+            }
+        ]
+    }
+}
