@@ -1,0 +1,7 @@
+mutation createQuizEntry($firstname: String!, $lastname: String!){
+createQuizEntry(firstname:$firstname, lastname:$lastname){
+  id
+  firstname
+  lastname
+}
+}

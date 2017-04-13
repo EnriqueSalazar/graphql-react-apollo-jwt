@@ -1,0 +1,5 @@
+  query{quizEntries{
+    id,
+    firstname,
+    lastname
+  }}

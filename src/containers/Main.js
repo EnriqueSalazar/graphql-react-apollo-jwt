@@ -1,22 +1,17 @@
 // This container handles the state of the app, also defines the layout.
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import {graphql} from 'react-apollo'
 import Form from '../components/Form'
 import List from '../components/List'
-import {gql, graphql} from 'react-apollo'
+import QUIZ_ENTRY_QUERY from '../queries/QuizEntryQuery.graphql'
 
 class Main extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      quizEntries: [],
-      formValues: {}
+      quizEntries: []
     }
-  }
-
-  // dispatchs an action to load the data
-  componentDidMount () {
-    this.props.actions.loadData()
   }
 
   // when props received from the store, updates state.
@@ -26,9 +21,7 @@ class Main extends Component {
       this.setState({quizEntries})
     }
   }
-  handleSubmit=(formValues) => {
-    this.props.actions.add(formValues)
-  }
+
   render () {
     return (
       <div >
@@ -45,14 +38,7 @@ Main.propTypes = {
 
 }
 
-const QuizEntryQuery = gql`
-  query{quizEntries{
-    id,
-    firstname,
-    lastname
-  }}
-`
-const MainWithData = graphql(QuizEntryQuery, {
+const MainWithData = graphql(QUIZ_ENTRY_QUERY, {
   options: {pollInterval: 3000}
 })(Main)
 

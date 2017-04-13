@@ -2,9 +2,11 @@
 // time of the assignation
 import React from 'react'
 import PropTypes from 'prop-types'
-import {gql, graphql} from 'react-apollo'
+import {graphql} from 'react-apollo'
 import Col from 'react-bootstrap/lib/Col'
 import Row from 'react-bootstrap/lib/Row'
+import QUIZ_ENTRY_QUERY from '../queries/QuizEntryQuery.graphql'
+import CREATE_QUIZ_ENTRY_QUERY from '../queries/CreateQuizEntryMutation.graphql'
 
 class Form extends React.Component {
   constructor (props) {
@@ -29,20 +31,17 @@ class Form extends React.Component {
     })
   }
   handleSubmit = (event) => {
-    const that = this
     event.preventDefault()
-    // this.props.handleSubmit(this.state.formValues)
+    const that = this
     const firstname = this.state.firstname
     const lastname = this.state.lastname
-    // this.props.submit(firstname, lastname)
     this.props.mutate({
       variables: {firstname, lastname},
-      refetchQueries: [{query: QuizEntryQuery}]
+      refetchQueries: [{query: QUIZ_ENTRY_QUERY}]
     })
       .then(({data}) => {
         console.log('got data', data)
         that.resetFormValues()
-        // that.setState({formValues: {}})
       }).catch((error) => {
         console.log('there was an error sending the query', error)
       })
@@ -77,37 +76,6 @@ Form.propTypes = {
   mutate: PropTypes.func.isRequired
 }
 
-const CreateQuizEntryMutation = gql`
-  mutation createQuizEntry($firstname: String!, $lastname: String!){
-  createQuizEntry(firstname:$firstname, lastname:$lastname){
-    id
-    firstname
-    lastname
-  }
-}
-`
-const QuizEntryQuery = gql`
-  query{quizEntries{
-    id,
-    firstname,
-    lastname
-  }}
-`
-const FormWithMutation = graphql(CreateQuizEntryMutation)(Form)
-// const FormWithMutation = graphql(CreateQuizEntryMutation, {
-//   props: ({mutate}) => ({
-//     submit: (firstname, lastname) => mutate({
-//       variables: {firstname, lastname},
-//       refetchQueries: [{query: QuizEntryQuery}]
-//     })
-//       .then(({data}) => {
-//         debugger//eslint-disable-line
-//         console.log('got data', data)
-//         this.setState({formValues: {}})
-//       }).catch((error) => {
-//         console.log('there was an error sending the query', error)
-//       })
-//   })
-// })(Form)
+const FormWithMutation = graphql(CREATE_QUIZ_ENTRY_QUERY)(Form)
 
 export default FormWithMutation
