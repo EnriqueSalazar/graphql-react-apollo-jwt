@@ -10,31 +10,42 @@ class Form extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      formValues: {}
+      firstname: '',
+      lastname: ''
     }
   }
   handleChange = (event) => {
     const id = event.target.id
     const value = event.target.value
-    const formValues = this.state.formValues
-    formValues[id] = value
-    this.setState({formValues})
+    const formValue = {}
+    formValue[id] = value
+    this.setState(formValue)
   }
-
+  resetFormValues = () => {
+    // debugger//eslint-disable-line
+    this.setState({
+      firstname: '',
+      lastname: ''
+    })
+  }
   handleSubmit = (event) => {
+    const that = this
     event.preventDefault()
     // this.props.handleSubmit(this.state.formValues)
-    const firstname = this.state.formValues.firstname
-    const lastname = this.state.formValues.lastname
-    this.props.submit(firstname, lastname)
-    // this.props.mutate({
-    //   variables: {firstname, lastname}
-    // })
-    //   .then(({data}) => {
-    //     console.log('got data', data)
-    //   }).catch((error) => {
-    //     console.log('there was an error sending the query', error)
-    //   })
+    const firstname = this.state.firstname
+    const lastname = this.state.lastname
+    // this.props.submit(firstname, lastname)
+    this.props.mutate({
+      variables: {firstname, lastname},
+      refetchQueries: [{query: QuizEntryQuery}]
+    })
+      .then(({data}) => {
+        console.log('got data', data)
+        that.resetFormValues()
+        // that.setState({formValues: {}})
+      }).catch((error) => {
+        console.log('there was an error sending the query', error)
+      })
   }
 
   render () {
@@ -47,7 +58,6 @@ class Form extends React.Component {
               type="text"
               value={this.state.firstname}
               onChange={this.handleChange} />
-            <br />
             <input
               id="lastname"
               type="text"
@@ -64,10 +74,10 @@ class Form extends React.Component {
 
 Form.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  submit: PropTypes.func.isRequired
+  mutate: PropTypes.func.isRequired
 }
 
-const createQuizEntryMutation = gql`
+const CreateQuizEntryMutation = gql`
   mutation createQuizEntry($firstname: String!, $lastname: String!){
   createQuizEntry(firstname:$firstname, lastname:$lastname){
     id
@@ -76,9 +86,28 @@ const createQuizEntryMutation = gql`
   }
 }
 `
+const QuizEntryQuery = gql`
+  query{quizEntries{
+    id,
+    firstname,
+    lastname
+  }}
+`
+const FormWithMutation = graphql(CreateQuizEntryMutation)(Form)
+// const FormWithMutation = graphql(CreateQuizEntryMutation, {
+//   props: ({mutate}) => ({
+//     submit: (firstname, lastname) => mutate({
+//       variables: {firstname, lastname},
+//       refetchQueries: [{query: QuizEntryQuery}]
+//     })
+//       .then(({data}) => {
+//         debugger//eslint-disable-line
+//         console.log('got data', data)
+//         this.setState({formValues: {}})
+//       }).catch((error) => {
+//         console.log('there was an error sending the query', error)
+//       })
+//   })
+// })(Form)
 
-export default graphql(createQuizEntryMutation, {
-  props: ({mutate}) => ({
-    submit: (firstname, lastname) => mutate({variables: {firstname, lastname}})
-  })
-})(Form)
+export default FormWithMutation

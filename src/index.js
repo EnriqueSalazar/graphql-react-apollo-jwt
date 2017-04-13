@@ -17,7 +17,8 @@ const history = syncHistoryWithStore(browserHistory, store)
 const client = new ApolloClient({
   networkInterface: createNetworkInterface({
     uri: 'http://localhost:3000/graphql'
-  })
+  }),
+  dataIdFromObject: o => o.id
 })
 
 ReactDOM.render(

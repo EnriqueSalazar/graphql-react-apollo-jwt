@@ -44,10 +44,16 @@ Main.propTypes = {
   main: PropTypes.object.isRequired
 
 }
-export default graphql(gql`
+
+const QuizEntryQuery = gql`
   query{quizEntries{
     id,
     firstname,
     lastname
   }}
-`)(Main)
+`
+const MainWithData = graphql(QuizEntryQuery, {
+  options: {pollInterval: 3000}
+})(Main)
+
+export default MainWithData
