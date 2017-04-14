@@ -13,24 +13,21 @@
  * limitations under the License.
  */
 
-'use strict';
+'use strict'
 
-const express = require('express');
-const path = require('path');
+const express = require('express')
+const path = require('path')
 
-const app = express();
+const app = express()
 
-// Setup view engine
-// app.set('view engine', 'pug');
-
-app.use(express.static(path.resolve(path.join(__dirname, '/dist'))));
+app.use(express.static(path.resolve(path.join(__dirname, '/dist'))))
 
 app.get('/', (req, res) => {
-  res.render('index');
-});
+  res.render('index')
+})
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080
 app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}`);
-  console.log('Press Ctrl+C to quit.');
-});
+  console.log(`App listening on port ${PORT}`)
+  console.log('Press Ctrl+C to quit.')
+})

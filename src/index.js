@@ -10,13 +10,13 @@ import {
 import './index.css'
 import Root from './containers/Root'
 import configureStore from './store/configureStore'
-
+import {endpointUrl} from './config/'
 const store = configureStore()
 const history = syncHistoryWithStore(browserHistory, store)
 
 const client = new ApolloClient({
   networkInterface: createNetworkInterface({
-    uri: 'http://localhost:3000/graphql'
+    uri: endpointUrl
   }),
   dataIdFromObject: o => o.id
 })

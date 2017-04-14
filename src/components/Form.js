@@ -73,7 +73,6 @@ class Form extends React.Component {
 }
 
 Form.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
   mutate: PropTypes.func.isRequired
 }
 

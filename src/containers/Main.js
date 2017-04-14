@@ -25,7 +25,7 @@ class Main extends Component {
   render () {
     return (
       <div >
-        <Form handleSubmit={this.handleSubmit} />
+        <Form />
         <List quizEntries={this.state.quizEntries} />
       </div>
     )

@@ -63,6 +63,7 @@
   },
   "scripts": {
     "dev": "webpack-dev-server",
+    "nodemon": "nodemon --watch server.js --exec \"webpack-dev-server --env development\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "predeploy": "npm run build",
