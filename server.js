@@ -23,6 +23,7 @@ const app = express()
 app.use(express.static(path.resolve(path.join(__dirname, '/dist'))))
 
 app.get('/', (req, res) => {
+  console.dir(req)
   res.render('index')
 })
 

@@ -33,12 +33,19 @@ module.exports = {
   devtool: 'inline-source-map',
 
   devServer: {
-    proxy: {
-      '/graphql': {
+    proxy: [
+      {
+        context: ['/graphql', '/auth/login', '/auth/logout', '/auth/google/callback'],
         target: 'http://localhost:3000',
         secure: false
       }
-    },
+    ],
+    // proxy: {
+    //   '/graphql': {
+    //     target: 'http://localhost:3000',
+    //     secure: false
+    //   }
+    // },
     hot: true,
     // enable HMR on the server
 
