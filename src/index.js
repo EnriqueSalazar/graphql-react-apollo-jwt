@@ -10,13 +10,13 @@ import {
 import './index.css'
 import Root from './containers/Root'
 import configureStore from './store/configureStore'
-import {endpointUrl} from './config/'
+import {ENDPOINT} from './config/'
 const store = configureStore()
 const history = syncHistoryWithStore(browserHistory, store)
 
 const client = new ApolloClient({
   networkInterface: createNetworkInterface({
-    uri: endpointUrl
+    uri: ENDPOINT
   }),
   dataIdFromObject: o => o.id
 })

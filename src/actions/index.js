@@ -1,5 +1,6 @@
 import * as types from '../constants/ActionTypes'
 import Data from '../service/data.json'
+import cookie from 'react-cookie'
 
 const fetchService = payload => ({type: types.FETCH_SERVICE, payload})
 
@@ -11,3 +12,14 @@ export const loadData = () => {
 }
 
 export const add = payload => ({type: types.ADD, payload})
+
+export const getSessionFromCookie = cookieName => {
+  const cookieJSON = cookie.load(cookieName) || {}
+  console.info('cookieJSON', cookieJSON)
+  return {type: types.GET_COOKIE, payload: cookieJSON}
+}
+// Not used, cookie cleared from server
+export const deleteSessionCookie = cookieName => {
+  cookie.remove(cookieName)
+  return {type: types.CLEAR_SESSION}
+}

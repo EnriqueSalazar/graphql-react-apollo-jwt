@@ -18,8 +18,6 @@ const Auth = props => {
     <Row>
       <Col md={5}>
         {profileHTML}
-        <br />
-
       </Col>
     </Row>
   )
