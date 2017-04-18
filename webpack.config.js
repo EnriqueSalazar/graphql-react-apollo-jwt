@@ -35,7 +35,7 @@ module.exports = {
   devServer: {
     proxy: [
       {
-        context: ['/graphql', '/auth/login', '/auth/logout', '/auth/google/callback'],
+        context: ['/graphql', '/graphiql', '/auth/login', '/auth/logout', '/auth/google/callback'],
         target: 'http://localhost:3000',
         secure: false
       }

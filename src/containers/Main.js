@@ -35,6 +35,7 @@ class Main extends Component {
               <Body />
             </div>
           }
+        <a href='/graphiql'>GraphiQL</a>
       </div>
     )
   }

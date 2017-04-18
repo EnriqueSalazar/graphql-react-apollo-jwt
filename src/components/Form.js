@@ -1,5 +1,3 @@
-// stateless component receives the status, data of the assignee and date and
-// time of the assignation
 import React from 'react'
 import PropTypes from 'prop-types'
 import {graphql} from 'react-apollo'
@@ -25,7 +23,6 @@ class Form extends React.Component {
     this.setState(formValue)
   }
   resetFormValues = () => {
-    // debugger//eslint-disable-line
     this.setState({
       firstname: '',
       lastname: ''
