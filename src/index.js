@@ -16,7 +16,10 @@ const history = syncHistoryWithStore(browserHistory, store)
 
 const client = new ApolloClient({
   networkInterface: createNetworkInterface({
-    uri: ENDPOINT
+    uri: ENDPOINT,
+    opts: {
+      credentials: 'same-origin'
+    }
   }),
   dataIdFromObject: o => o.id
 })

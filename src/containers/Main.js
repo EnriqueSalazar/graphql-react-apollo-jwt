@@ -27,15 +27,18 @@ class Main extends Component {
       <div >
         <Auth
           session={this.props.main.session} />
-        {
-            !_.isEmpty(this.props.main.session) &&
-            <div>
-              <br />
-              <Form />
-              <Body />
-            </div>
-          }
+        <div>
+          <br />
+          <Form />
+          <br />
+          <Body />
+        </div>
         <a href='/graphiql'>GraphiQL</a>
+        <br />
+        <br />
+        {
+          !_.isEmpty(this.props.main.session) && <div>This will only show when logged</div>
+        }
       </div>
     )
   }
