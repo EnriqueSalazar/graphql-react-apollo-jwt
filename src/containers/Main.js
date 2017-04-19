@@ -18,7 +18,6 @@ class Main extends Component {
     return shouldUpdateSessionState
   }
   componentDidUpdate () {
-    console.info('componentDidUpdate')
     this.props.actions.getSessionFromCookie(COOKIE_NAME)
   }
 
@@ -37,7 +36,8 @@ class Main extends Component {
         <br />
         <br />
         {
-          !_.isEmpty(this.props.main.session) && <div>This will only show when logged</div>
+          !_.isEmpty(this.props.main.session) &&
+          <div>This will only show when logged</div>
         }
       </div>
     )

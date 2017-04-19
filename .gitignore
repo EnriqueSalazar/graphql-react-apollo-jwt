@@ -39,3 +39,5 @@ jspm_packages
 src/config
 .idea
 .vscode
+
+config.js

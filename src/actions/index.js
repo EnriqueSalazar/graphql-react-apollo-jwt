@@ -15,7 +15,6 @@ export const add = payload => ({type: types.ADD, payload})
 
 export const getSessionFromCookie = cookieName => {
   const cookieJSON = cookie.load(cookieName) || {}
-  console.info('cookieJSON', cookieJSON)
   return {type: types.GET_COOKIE, payload: cookieJSON}
 }
 // Not used, cookie cleared from server

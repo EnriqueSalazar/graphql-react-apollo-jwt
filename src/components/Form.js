@@ -38,7 +38,7 @@ class Form extends React.Component {
       refetchQueries: [{query: QUIZ_ENTRY_QUERY}]
     })
       .then(({data}) => {
-        console.log('got data', data)
+        console.log('QuizEntry created:', data, '<= check the ID')
         that.resetFormValues()
       }).catch((error) => {
         console.log('there was an error sending the query', error)

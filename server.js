@@ -17,11 +17,33 @@
 
 const express = require('express')
 const path = require('path')
+const proxy = require('http-proxy-middleware')
+const config = require('./config.js').config // eslint-disable-line node/no-unpublished-require
 
 const app = express()
 
-app.use(express.static(path.resolve(path.join(__dirname, '/dist'))))
+console.log('process.env.NODE_ENV', process.env.NODE_ENV)
+const PROXYTARGET = config.get('PROXYTARGET')
 
+app.use((req, res, next) => {
+  console.error('req.path :', req.path) // eslint-disable-line no-console
+  next()
+})
+
+const proxyOptions = {
+  target: PROXYTARGET,
+  changeOrigin: true,               // needed for virtual hosted sites
+  logLevel: 'debug'
+}
+const proxyContext = [
+  '/graphql',
+  '/graphiql',
+  '/auth/login',
+  '/auth/logout',
+  '/auth/google/callback'
+]
+app.use(proxy(proxyContext, proxyOptions))
+app.use(express.static(path.resolve(path.join(__dirname, '/dist'))))
 app.get('/', (req, res) => {
   console.dir(req)
   res.render('index')

@@ -25,7 +25,6 @@ export default function todos (state = initialState, action) {
         ]
       }
     case GET_COOKIE:
-      console.info('action.payload', action.payload)
       return {
         ...state,
         session:
