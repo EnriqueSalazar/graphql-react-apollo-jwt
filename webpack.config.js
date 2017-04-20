@@ -6,7 +6,7 @@ module.exports = {
     'react-hot-loader/patch',
     // activate HMR for React
 
-    'webpack-dev-server/client?http://localhost:8080',
+    'webpack-dev-server/client?http://quiz2-client.org:8080',
     // bundle the client for webpack-dev-server
     // and connect to the provided endpoint
 
@@ -36,7 +36,7 @@ module.exports = {
     proxy: [
       {
         context: ['/graphql', '/graphiql', '/auth/login', '/auth/logout', '/auth/google/callback'],
-        target: 'http://localhost:3000',
+        target: 'http://quiz2-server:3000',
         secure: false
       }
     ],

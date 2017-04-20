@@ -23,16 +23,16 @@ const config = require('./config.js').config // eslint-disable-line node/no-unpu
 const app = express()
 
 console.log('process.env.NODE_ENV', process.env.NODE_ENV)
-const PROXYTARGET = config.get('PROXYTARGET')
+const PROXYTARGET = process.env.NODE_ENV === 'production' ? config.get('PROXYTARGET') : 'http://quiz2-server:3000'
 
 app.use((req, res, next) => {
-  console.error('req.path :', req.path) // eslint-disable-line no-console
+  console.error('req.path :', req.hostname, req.path) // eslint-disable-line no-console
   next()
 })
 
 const proxyOptions = {
   target: PROXYTARGET,
-  changeOrigin: true,               // needed for virtual hosted sites
+  changeOrigin: false,               // needed for virtual hosted sites
   logLevel: 'debug'
 }
 const proxyContext = [

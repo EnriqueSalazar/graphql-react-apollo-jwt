@@ -12081,17 +12081,7 @@ function maybeDeepFreeze(obj) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var getUrl = function getUrl() {
-  console.info('Serving in', "production");
-  if (true) {
-    return 'http://quiz2-server-dot-sytac-quiz2.appspot.com';
-  } else {
-    return 'http://localhost:8080';
-  }
-};
-
-var ENDPOINT = exports.ENDPOINT = getUrl() + '/graphql/';
-var PROXYTARGET = exports.PROXYTARGET = getUrl();
+var ENDPOINT = exports.ENDPOINT = '/graphql/';
 var COOKIE_NAME = exports.COOKIE_NAME = 'app-cookie';
 ;
 
@@ -12100,11 +12090,7 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(getUrl, 'getUrl', '/home/enriq/dev/graphql-react-apollo-jwt/src/config/index.js');
-
   __REACT_HOT_LOADER__.register(ENDPOINT, 'ENDPOINT', '/home/enriq/dev/graphql-react-apollo-jwt/src/config/index.js');
-
-  __REACT_HOT_LOADER__.register(PROXYTARGET, 'PROXYTARGET', '/home/enriq/dev/graphql-react-apollo-jwt/src/config/index.js');
 
   __REACT_HOT_LOADER__.register(COOKIE_NAME, 'COOKIE_NAME', '/home/enriq/dev/graphql-react-apollo-jwt/src/config/index.js');
 }();
@@ -37696,14 +37682,6 @@ var Main = function (_Component) {
         _react2.default.createElement(_Auth2.default, {
           session: this.props.main.session }),
         _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement('br', null),
-          _react2.default.createElement(_Form2.default, null),
-          _react2.default.createElement('br', null),
-          _react2.default.createElement(_Body2.default, null)
-        ),
-        _react2.default.createElement(
           'a',
           { href: '/graphiql' },
           'GraphiQL'
@@ -37713,7 +37691,10 @@ var Main = function (_Component) {
         !_lodash2.default.isEmpty(this.props.main.session) && _react2.default.createElement(
           'div',
           null,
-          'This will only show when logged'
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(_Form2.default, null),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(_Body2.default, null)
         )
       );
     }

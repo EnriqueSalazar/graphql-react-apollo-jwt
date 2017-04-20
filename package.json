@@ -1,5 +1,5 @@
 {
-  "name": "graphql-apollo",
+  "name": "graphql-react-apollo-jwt",
   "version": "1.0.0",
   "dependencies": {
     "express": "^4.14.1",
@@ -70,7 +70,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "predeploy": "npm run build",
-    "deploy": "gcloud app deploy",
+    "deploy": "gcloud app deploy -v client-skeleton",
     "postdeploy": "gcloud app browse",
     "build": "webpack --config webpack.prod.config.js"
   },
@@ -83,5 +83,8 @@
   "bugs": {
     "url": "https://github.com/sytac/play2-client/issues"
   },
-  "homepage": "https://github.com/sytac/play2-client#readme"
+  "homepage": "https://github.com/sytac/play2-client#readme",
+  "engines": {
+    "node": ">=6.10.0"
+  }
 }
